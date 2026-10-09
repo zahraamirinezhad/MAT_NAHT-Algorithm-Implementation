@@ -305,38 +305,7 @@ def env_worker(remote, env_fn):
             # Return the observations, avail_actions and state to make the next action
             state = env.get_state()
             avail_actions = env.get_avail_actions()
-            # print("avail_actions avail_actions avail_actions avail_actions avail_actions")
-            # print(avail_actions)
-            # agent_alive = []
-            # for i in range(3):
-            #     alive = np.sum(avail_actions[i]) > 0
-            #     agent_alive.append(alive)
-            # print("agent_alive agent_alive agent_alive agent_alive agent_alive")
-            # print(agent_alive)
             obs = env.get_obs()
-            # print("obsobsobsobsobsobsobsobsobsobsobsobsobsobsobsobs")
-            # print(obs)
-            # print("obs123123obsobsobsobsobsobsobsobsobsobsobsobsobsobsobs")
-            # for i,x in enumerate(obs):
-            #     print(i,x)
-            # print("obs23456789obsobsobsobsobsobsobsobsobsobsobsobsobsobsobs")
-            # obs0 = obs[0]
-            # for i, value in enumerate(obs0):
-            #     print(i, value)
-            
-            # print("*************************")
-            # for agent_id in range(3):
-            #     print("================")
-            #     print("AGENT", agent_id)
-
-            #     print("self part")
-            #     print(obs[agent_id][:16])
-
-            #     print("teammate1")
-            #     print(obs[agent_id][16:22])
-
-            #     print("teammate2")
-            #     print(obs[agent_id][22:28])
             remote.send({
                 # Data for the next timestep needed to pick an action
                 "state": state,
@@ -351,10 +320,6 @@ def env_worker(remote, env_fn):
         elif cmd == "reset":
             env.reset()
             avail_actions = env.get_avail_actions()
-            # agent_alive = []
-            # for i in range(len(avail_actions)):
-            #     alive = np.sum(avail_actions[i]) > 0
-            #     agent_alive.append(alive)
             
             remote.send({
                 "state": env.get_state(),
